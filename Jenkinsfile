@@ -9,4 +9,12 @@ pipeline {
             }
         }
     }
+    post {
+        always {
+            echo "Finished running"
+        }
+        success {
+            echo "Success"
+        }
+    }
 }
