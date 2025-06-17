@@ -1,11 +1,11 @@
 pipeline {
-    agent any
-
+    agent {
+        docker { image 'node:22.16.0-alpine3.22' }
+    }
     stages {
-        stage('Build') {
+        stage('Test') {
             steps {
-                echo 'Building...'
-                // Add your build steps here
+                sh 'node --eval "console.log(process.arch,process.platform)"'
             }
         }
     }
@@ -15,6 +15,9 @@ pipeline {
         }
         success {
             echo "Success"
+        }
+        failure {
+            echo "Failed"
         }
     }
 }
